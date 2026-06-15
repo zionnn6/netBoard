@@ -1,0 +1,50 @@
+USE netboard;
+SHOW TABLES;
+
+DROP TABLE IF EXISTS Employer;
+DROP TABLE IF EXISTS Business;
+DROP TABLE IF EXISTS Student;
+
+-- CREATE STUDENT TABLE
+CREATE TABLE Student(
+UserID SMALLINT UNSIGNED AUTO_INCREMENT,
+FirstName VARCHAR(50) NOT NULL,
+LastName VARCHAR(50) NOT NULL,
+Email VARCHAR(50) NOT NULL UNIQUE,
+CHECK (Email LIKE '%.edu'),
+Password VARCHAR(255) NOT NULL,
+DOB DATE NOT NULL,
+PRIMARY KEY (UserID)
+);
+
+-- CREATE BUSINESS TABLE
+CREATE TABLE Business(
+BusinessID SMALLINT UNSIGNED AUTO_INCREMENT,
+BusinessName VARCHAR(100),
+OwnerFirstName VARCHAR (50)  NOT NULL,
+OwnerLastName VARCHAR(50)  NOT NULL,
+BusinessEmail VARCHAR(50) NOT NULL UNIQUE,
+BusinessNumber VARCHAR(15) NOT NULL,
+Industry ENUM('Technology', 'Healthcare', 'Finance', 'Education / Research', 
+'Marketing / Media', 'Nonprofit / Advocacy', 'Engineering', 'Legal', 
+'Retail / Commerce', 'Other'),
+IDType ENUM('EIN', 'BRN', 'SEC', 'MCN', 'NPI', 'SBA'),
+GovID VARCHAR(50) NOT NULL,
+PRIMARY KEY (BusinessID)
+);
+
+-- CREATE EMPLOYER TABLE
+CREATE TABLE Employer(
+EmployerID SMALLINT UNSIGNED AUTO_INCREMENT,
+EmployerBusinessID SMALLINT UNSIGNED, 
+FirstName VARCHAR(50),
+LastName VARCHAR(50) NOT NULL,
+Email VARCHAR(50) NOT NULL,
+Password VARCHAR(255) NOT NULL,
+DOB DATE NOT NULL,
+PRIMARY KEY (EmployerID),
+FOREIGN KEY (EmployerBusinessID) REFERENCES Business(BusinessID)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
