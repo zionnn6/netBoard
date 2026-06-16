@@ -621,6 +621,7 @@ function EmployerDashboard({ go, theme, toggleTheme }) {
     { key: 'listings',  label: 'Our Listings', icon: '◈' },
     { key: 'post',      label: 'Post Position', icon: '＋' },
     { key: 'employers', label: 'Team Members',  icon: '◉' },
+    { key: 'resources', label: 'Business Resources', icon: '✽'},
     { key: 'settings',  label: 'Settings',      icon: '◎' },
     { key: 'support',   label: 'Support',       icon: '◐' },
   ]
@@ -647,6 +648,7 @@ function EmployerDashboard({ go, theme, toggleTheme }) {
         {tab === 'listings'  && <EmployerListings />}
         {tab === 'post'      && <PostOpportunity onPost={() => setTab('listings')} />}
         {tab === 'employers' && <ManageEmployers />}
+        {tab == 'resources' && <BusinessResources />}
         {tab === 'settings'  && <AccountSettings theme={theme} toggleTheme={toggleTheme} userType="employer" />}
         {tab === 'support'   && <SupportCenter />}
       </main>
@@ -816,6 +818,19 @@ function ManageEmployers() {
             </div>
           </div>
         ))}
+      </div>
+    </div>
+  )
+}
+
+function BusinessResources() {
+  return (
+    <div>
+      <div className='section-header'>
+        <div>
+          <h2 className='section-title'>Resources for Small Businesses (Coming Soon!)</h2>
+          <p className="section-sub">This is your hub for small business resources and support. The netBoard team is actively curating tools and information that can help you succeed. Check back soon!</p>
+        </div>
       </div>
     </div>
   )
